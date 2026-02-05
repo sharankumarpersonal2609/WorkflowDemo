@@ -3,7 +3,7 @@ agent any
 stages{
 stage('Checkout'){
 steps{
-git 
+checkout scm
 }
 }
 stage('Dockerbuild'){
@@ -13,7 +13,10 @@ sh 'docker build -t demo .'
 }
 stage('DockerContainer'){
 steps{
-sh 'docker run -d -p 8000:80 demo'
+sh '''
+docker rm -f demo_container || true
+docker run -d --name "demo_container" -p 8000:80 demo
+'''
 }
 }
 }

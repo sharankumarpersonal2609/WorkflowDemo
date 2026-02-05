@@ -1,5 +1,5 @@
 pipeline{
-agent any{
+agent any
 stages{
 stage('Checkout'){
 steps{
@@ -8,12 +8,12 @@ git
 }
 stage('Dockerbuild'){
 steps{
-sh 'Docker build -t demo .'
+sh 'docker build -t demo .'
 }
 }
 stage('DockerContainer'){
 steps{
-sh 'Docker run -d -p 8000:80 demo'
+sh 'docker run -d -p 8000:80 demo'
 }
 }
 }

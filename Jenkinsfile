@@ -14,10 +14,10 @@ sh 'docker build -t sharan2609/demo:1.0 .'
 stage('Dockerpush'){
 steps{
 withCredentials([usernamePassword(credentialsId : 'dockerhub-creds', usernameVariable:'DOCKER_USERNAME', passwordVariable:'DOCKER_PASSWORD')]){ 
-sh '''
-echo '$DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
+sh """
+echo \$DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
 docker push sharan2609/demo:1.0
-'''
+"""
 }
 }
 }
